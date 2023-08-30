@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}
-  namespace: {{ .Values.namespace }}
+  name: xpensia
+  namespace: default
   labels:
-    app: {{ .Values.appName }}
+    app: xpensia
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
-      app: {{ .Values.appName }}
+      app: xpensia
       tier: frontend
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}
+        app: xpensia
         tier: frontend
     spec: # Pod spec
       containers:
       - name: mycontainer
-        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        image: xpensia-app:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         envFrom:
         - configMapRef:
-            name: {{ .Values.configmap.name }}
+            name: xpensiaconfigmapv1.0
         resources:
           requests:
-            memory: "16Mi" 
+            memory: "16Mi"
             cpu: "50m"    # 500milliCPUs (1/2 CPU)
           limits:
             memory: "128Mi"

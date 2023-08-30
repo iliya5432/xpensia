@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.appName }}
-  namespace: {{ .Values.namespace }}
+  name: xpensia
+  namespace: default
   labels:
-    app: {{ .Values.appName }}
+    app: xpensia
 spec:
   ports:
-  - port: 80
+  - port: 8080
     protocol: TCP
     name: flask
   selector:
-    app: {{ .Values.appName }}
+    app: xpensia
     tier: frontend
-  type: LoadBalancer
+  type: LoadBalancera
